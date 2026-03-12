@@ -15,10 +15,21 @@ thumbnails.addEventListener('click', (e) => {
   //   return;
   // }
 
-  let imageSource = e.target;
+  const target = e.target;
+  let imageSource;
 
-  if (imageSource.tagName === 'IMG') {
-    imageSource = imageSource.parentNode;
+  switch (target.tagName) {
+    case 'A':
+      imageSource = target;
+      break;
+    case 'IMG':
+      imageSource = target.parentNode;
+      break;
+    case 'LI':
+      imageSource = target.children[0];
+      break;
+    default:
+      return;
   }
 
   // largeImg.setAttribute('src', imageSource.getAttribute('href'));
